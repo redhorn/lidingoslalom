@@ -1,0 +1,8 @@
+%div{data: {role: 'page', url: '/groups/'}}
+  .ui-bar-a.userinfo
+    Inloggad som: Joel Lundberg
+  %div{data: {role: 'content'}}
+    .logo= image_tag('logo-top.png')
+    %h2 Välj träningsgrupp
+    %ul{data: {role: 'listview', inset: 'true'}}
+      = render @groups

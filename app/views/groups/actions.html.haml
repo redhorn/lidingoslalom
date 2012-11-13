@@ -1,0 +1,14 @@
+%div{data: {role: 'page'}}
+	.ui-bar-a.userinfo
+		Inloggad som: Joel Lundberg
+	%div{data: {role: 'content'}}
+		.logo
+			= image_tag('logo-top.png')
+		.ui-bar-a
+			%h2
+				= @group.name
+		%ul{data: {role: 'listview', inset: 'true'}}
+			%li= link_to 'Registrera närvaro', ''
+			%li= link_to 'Visa alla träningar', ''
+			%li= link_to 'Lägg till träning', ''
+			%li= link_to 'Se kontaktlista', ''

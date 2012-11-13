@@ -1,11 +1,12 @@
 Lidingoslalom::Application.routes.draw do
-  get "static_pages/home"
 
-  get "static_pages/help"
-
-  resources :students
-
+  resources :members
   resources :groups
-
   resources :users
+  resources :sessions, only: [:new, :create, :destroy]
+
+  root to: 'sessions#new'
+
+  match 'groups/:id/actions', to: 'groups#actions'
+
 end
