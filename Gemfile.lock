@@ -118,6 +118,7 @@ DEPENDENCIES
   jquery_mobile_rails (= 1.2.0)
   pg (= 0.12.2)
   rails (= 3.2.8)
+  sass
   sass-rails (= 3.2.5)
   thin
   uglifier (= 1.2.3)

@@ -5,6 +5,7 @@ gem 'pg', '0.12.2'
 gem 'haml', '3.2.0.alpha.10'
 gem 'thin'
 gem 'jquery_mobile_rails', '1.2.0'
+gem 'sass'
 
 group :assets do
   gem 'sass-rails',   '3.2.5'

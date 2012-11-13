@@ -2,13 +2,11 @@
 	.ui-bar-a.userinfo
 		Inloggad som: Joel Lundberg
 	%div{data: {role: 'content'}}
-		.logo
-			= image_tag('logo-top.png')
+		.logo= image_tag('logo-top.png')
 		.ui-bar-a
-			%h2
-				= @group.name
+			%h2= @group.name
 		%ul{data: {role: 'listview', inset: 'true'}}
 			%li= link_to 'Registrera närvaro', ''
-			%li= link_to 'Visa alla träningar', ''
-			%li= link_to 'Lägg till träning', ''
-			%li= link_to 'Se kontaktlista', ''
+			%li= link_to 'Visa alla träningar', group_practices_path(@group)
+			%li= link_to 'Lägg till träning', new_group_practice_path(@group)
+			%li= link_to 'Se kontaktlista', group_members_path(@group)

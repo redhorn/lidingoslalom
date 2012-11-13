@@ -1,11 +1,15 @@
 class MembersController < ApplicationController
-  # GET /members
-  # GET /members.json
+
   def index
-    @members = Member.all
+    if params[:group_id].nil?
+      @members = Member.all
+    else
+      @group = Group.find(params[:group_id])
+      @members = Member.find_by_group_id(@group.id) || []
+    end
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html
       format.json { render json: @members }
     end
   end

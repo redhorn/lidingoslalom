@@ -1,7 +1,9 @@
 Lidingoslalom::Application.routes.draw do
 
-  resources :members
-  resources :groups
+  resources :groups do
+    resources :practices
+    resources :members
+  end
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
 
