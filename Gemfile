@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.8'
 gem 'pg', '0.12.2'
 gem 'haml', '3.2.0.alpha.10'
+gem 'thin'
 gem 'jquery_mobile_rails', '1.2.0'
 
 group :assets do
