@@ -19,6 +19,11 @@ class MembersController < ApplicationController
   def show
     @group = Group.find(params[:group_id])
     @member = Member.find(params[:id])
+    @num_practices = @member.attendances.where(attended: true).size
+    @num_missed_practices = @member.attendances.where(attended: false).size
+    unless @member.practices.empty?
+      @latest_attendance = @member.practices.order("date DESC").first.date
+    end
 
     respond_to do |format|
       format.html # show.html.erb

@@ -2,7 +2,7 @@ class PracticesController < ApplicationController
 
   def index
     @group = Group.find(params[:group_id])
-    @practices = Practice.where(group_id: @group.id)
+    @practices = Practice.where(group_id: @group.id).order("date DESC")
 
     respond_to do |format|
       format.html
@@ -12,7 +12,7 @@ class PracticesController < ApplicationController
 
   def regindex
     @group = Group.find(params[:group_id])
-    @practices = Practice.where(group_id: @group.id)
+    @practices = Practice.where(group_id: @group.id).order("date DESC")
 
     respond_to do |format|
       format.html
@@ -58,7 +58,7 @@ class PracticesController < ApplicationController
 
     respond_to do |format|
       if @practice.save
-        format.html { redirect_to group_practices_path, notice: 'Practice was successfully created.' }
+        format.html { redirect_to "/groups/#{@group.id}/actions", notice: 'Practice was successfully created.' }
         format.json { render json: @practice, status: :created, location: @practice }
       else
         format.html { render action: "new" }

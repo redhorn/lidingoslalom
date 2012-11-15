@@ -1,0 +1,13 @@
+= form_for(@group) do |f|
+  - if @group.errors.any?
+    %div#error_explanation
+      %h2
+        = pluralize(@group.errors.count, "error")
+        prohibited this group from being saved:
+      %ul
+        - @group.errors.full_messages.each do |msg|
+          %li= msg
+
+  = f.text_field :name, placeholder: 'Gruppens namn'
+  = f.submit({data: {theme: 'a', icon: 'arrow-r'}})
+  %a{data: {role: 'button', theme: 'r', icon: 'delete', rel: 'back'}}Avbryt

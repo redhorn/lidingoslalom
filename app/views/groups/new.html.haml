@@ -1,9 +1,8 @@
-%div{data: {role: 'page'}}
+%div{data: {role: 'page', url: '/groups/'}}
 	.ui-bar-a.userinfo
 		Inloggad som: Stefan Pettersson Noord
 	%div{data: {role: 'content'}}
 		.logo= image_tag('logo-top.png')
-		.ui-bar-a
-			%h2= @group.name
+		%h2 Skapa ny grupp
 
 		= render 'form'

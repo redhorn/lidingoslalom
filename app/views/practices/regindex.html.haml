@@ -1,16 +1,17 @@
 %div{data: {role: 'page'}}
   .ui-bar-a.userinfo
-    Inloggad som: Joel Lundberg
+    Inloggad som: Stefan Pettersson Noord
   %div{data: {role: 'content'}}
     .logo= image_tag('logo-top.png')
     .ui-bar-a
       %h2= @group.name
 
     %h3{style: "margin-bottom: 20px;"}Välj träningstillfälle för närvaro
-    %ul{data: {role: 'listview', inset: 'true'}}
+    %ul{data: {role: 'listview', inset: 'true', refresh: 'true'}}
       - @practices.each do |practice|
-        %li
+      -   theme = practice.attendances.empty? ? 'r' : 'c'
+        %li{data: {theme: "#{theme}"}}
           %a{href: "practices/#{practice.id}/register"}
             #{practice.date.strftime("%A %Y-%m-%d")}
 
-  = link_to 'New Practice', new_group_practice_path
+    %a{href: new_group_practice_path, data: {role: 'button', icon: 'plus'}}Lägg till träning

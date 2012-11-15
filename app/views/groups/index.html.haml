@@ -1,8 +1,9 @@
 %div{data: {role: 'page', url: '/groups/'}}
-  .ui-bar-a.userinfo
-    Inloggad som: Joel Lundberg
-  %div{data: {role: 'content'}}
-    .logo= image_tag('logo-top.png')
-    %h2 Välj träningsgrupp
-    %ul{data: {role: 'listview', inset: 'true'}}
-      = render @groups
+	.ui-bar-a.userinfo
+		Inloggad som: Stefan Pettersson Noord
+	%div{data: {role: 'content'}}
+		.logo= image_tag('logo-top.png')
+		%h2 Välj träningsgrupp
+		%ul{data: {role: 'listview', inset: 'true'}}
+			= render @groups
+		%a{href: new_group_path, data: {role: 'button', icon: 'plus'}}Lägg till grupp

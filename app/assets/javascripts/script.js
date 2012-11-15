@@ -6,7 +6,10 @@ $(document).bind("mobileinit", function(){
 });
 
 $(document).bind("pageinit", function(){
-	$(".back-button").bind("click", function(){
-		history.back();
-	});
+	$("a.refresh-page").bind("click", function() {
+		$.mobile.changePage($(this).attr("href"), {
+			reloadPage: true
+		});
+		return false;
+	})
 });

@@ -1,6 +1,6 @@
 %div{data: {role: 'page'}}
 	.ui-bar-a.userinfo
-		Inloggad som: Joel Lundberg
+		Inloggad som: Stefan Pettersson Noord
 	%div{data: {role: 'content'}}
 		.logo= image_tag('logo-top.png')
 		.ui-bar-a
@@ -10,8 +10,9 @@
 			%br
 			#{@practice.location}
 
-		.ui-body.ui-body-e{style: "margin-top: 20px"}
-			Alla medlemmar är förvalda som närvarande på träningen. Du markerar endast frånvaro.
+		- if @practice.attendances.empty?
+			.ui-body.ui-body-e{style: "margin-top: 20px"}
+				Alla medlemmar är förvalda som närvarande på träningen. Du markerar endast frånvaro.
 
 		%h3{style: "margin-bottom: 20px;"}Markera frånvaro
 		= form_for(@attendance) do |f|
@@ -19,8 +20,13 @@
 			= hidden_field_tag "practice_id", "#{@practice.id}"
 			%fieldset{data: {role: 'controlgroup'}}
 				- @members.each do |member|
-					= check_box_tag "cb-#{member.id}", "#{member.id}", true
-					= label_tag "cb-#{member.id}", "#{member.name} (-#{member.dateofbirth.strftime('%y')})"
+					- if member.attendances.where(practice_id: @practice.id).empty?
+						-	att = true
+					- else
+						- att = member.attendances.where(practice_id: @practice.id).first.attended
+					= hidden_field_tag "members[m#{member.id}]", "#{member.id},n"
+					= check_box_tag "members[m#{member.id}]", "#{member.id},y", att
+					= label_tag "members[m#{member.id}]", "#{member.name} (-#{member.dateofbirth.strftime('%y')})"
 			= f.submit "Registrera närvaro", 'data-theme' => 'a', 'data-icon' => 'check'
 			%a{data: {role: 'button', theme: 'e', icon: 'back'}}Nollställ
 			%a{data: {rel: 'back', role: 'button', theme: 'r', icon: 'delete'}}Avbryt

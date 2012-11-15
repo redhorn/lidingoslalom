@@ -1,6 +1,6 @@
-%div{data: {role: 'page'}}
+%div{data: {role: 'page', url: "/groups/#{@group.id}/members/"}}
   .ui-bar-a.userinfo
-    Inloggad som: Joel Lundberg
+    Inloggad som: Stefan Pettersson Noord
   %div{data: {role: 'content'}}
     .logo= image_tag('logo-top.png')
     .ui-bar-a
@@ -16,4 +16,4 @@
             %span.parentinfo
               #{member.parent_name}: #{member.parent_phone}
 
-  = link_to 'New Member', new_group_member_path
+    %a{href: new_group_member_path, data: {role: 'button', icon: 'plus'}}Lägg till medlem
