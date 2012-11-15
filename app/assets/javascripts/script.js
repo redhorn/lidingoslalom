@@ -1,8 +1,12 @@
 
-console.log($(document));
 $(document).bind("mobileinit", function(){
   $.extend($.mobile, {
     defaultPageTransition: 'slide'
   });
-  console.log("vafan liksom");
+});
+
+$(document).bind("pageinit", function(){
+	$(".back-button").bind("click", function(){
+		history.back();
+	});
 });

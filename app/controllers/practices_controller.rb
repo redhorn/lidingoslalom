@@ -1,7 +1,8 @@
 class PracticesController < ApplicationController
 
   def index
-    @practices = Practice.all
+    @group = Group.find(params[:group_id])
+    @practices = Practice.where(group_id: @group.id)
 
     respond_to do |format|
       format.html
@@ -19,6 +20,7 @@ class PracticesController < ApplicationController
   end
 
   def new
+    @group = Group.find(params[:group_id])
     @practice = Practice.new
 
     respond_to do |format|
@@ -32,11 +34,13 @@ class PracticesController < ApplicationController
   end
 
   def create
+    @group = Group.find(params[:group_id])
     @practice = Practice.new(params[:practice])
+    @practice.group_id = @group.id
 
     respond_to do |format|
       if @practice.save
-        format.html { redirect_to @practice, notice: 'Practice was successfully created.' }
+        format.html { redirect_to group_practices_path, notice: 'Practice was successfully created.' }
         format.json { render json: @practice, status: :created, location: @practice }
       else
         format.html { render action: "new" }

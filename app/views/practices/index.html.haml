@@ -1,0 +1,22 @@
+%h1 Listing practices for #{@group.name}
+
+%table
+  %tr
+    %th
+    %th
+    %th
+    %th
+    %th
+
+  - @practices.each do |practice|
+    %tr
+      %td= practice.date
+      %td= practice.location
+      %td= practice.notes
+      %td= link_to 'Show', [@group, practice]
+      %td= link_to 'Edit', edit_group_practice_path(@group, practice)
+      %td= link_to 'Destroy', [@group, practice], method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Practice', new_group_practice_path
