@@ -6,11 +6,11 @@
     .ui-bar-a
       %h2= @group.name
 
-    %h3{style: "margin-bottom: 20px;"}Välj träningstillfälle
+    %h3{style: "margin-bottom: 20px;"}Välj träningstillfälle för närvaro
     %ul{data: {role: 'listview', inset: 'true'}}
       - @practices.each do |practice|
         %li
-          %a{href: edit_group_practice_path(@group, practice)}
+          %a{href: "practices/#{practice.id}/register"}
             #{practice.date.strftime("%A %Y-%m-%d")}
 
   = link_to 'New Practice', new_group_practice_path

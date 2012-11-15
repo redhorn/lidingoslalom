@@ -1,24 +1,19 @@
-- if @group.nil?
-  %h1 Listing members
-- else
-  %h1 Listing members for #{@group.name}
+%div{data: {role: 'page'}}
+  .ui-bar-a.userinfo
+    Inloggad som: Joel Lundberg
+  %div{data: {role: 'content'}}
+    .logo= image_tag('logo-top.png')
+    .ui-bar-a
+      %h2= @group.name
 
-%table
-  %tr
-    %th Name
-    %th Group
-    %th
-    %th
-    %th
+    %h3{style: "margin-bottom: 20px;"}Alla medlemmar i gruppen
+    %ul{data: {role: 'listview', inset: 'true', filter: 'true'}}
+      - @members.each do |member|
+        %li
+          %a{href: group_member_path(@group, member)}
+            #{member.name} (-#{member.dateofbirth.strftime("%y")})
+            %br
+            %span.parentinfo
+              #{member.parent_name}: #{member.parent_phone}
 
-- @members.each do |member|
-  %tr
-    %td= member.name
-    %td= member.group_id
-    %td= link_to 'Show', [@group, member]
-    %td= link_to 'Edit', edit_group_member_path(@group, member)
-    %td= link_to 'Destroy', [@group, member], method: :delete, data: { confirm: 'Are you sure?' }
-
-%br
-
-= link_to 'New Member', new_group_member_path
+  = link_to 'New Member', new_group_member_path

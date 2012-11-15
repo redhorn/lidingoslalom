@@ -1,0 +1,9 @@
+%div{data: {role: 'page'}}
+	.ui-bar-a.userinfo
+		Inloggad som: Joel Lundberg
+	%div{data: {role: 'content'}}
+		.logo= image_tag('logo-top.png')
+		.ui-bar-a
+			%h2= @group.name
+
+		= render 'form'

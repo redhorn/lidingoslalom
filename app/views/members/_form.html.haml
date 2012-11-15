@@ -1,0 +1,19 @@
+= form_for([@group, @member]) do |f|
+  - if @member.errors.any?
+    %div#error_explanation
+      %h2
+        = pluralize(@member.errors.count, "error")
+        prohibited this member from being saved:
+      %ul
+        - @member.errors.full_messages.each do |msg|
+          %li= msg
+
+  = f.text_field :name, placeholder: 'Namn'
+  = f.label "Födelsedatum", style: "display: block; text-align: center"
+  %fieldset{data: {role: 'controlgroup', type: 'horizontal'}, style: "text-align: center"}
+    = date_select :member, :dateofbirth, { start_year: 1990, end_year: Time.now.year, prompt: false }
+  = f.text_field :parent_name, placeholder: 'Förälders namn'
+  = f.text_field :parent_phone, placeholder: 'Förälders telefonnummer'
+  = f.text_field :parent_email, placeholder: 'Förälders e-mail'
+  = f.submit({data: {theme: 'a', icon: 'arrow-r'}})
+  %a{data: {role: 'button', theme: 'r', icon: 'delete', rel: 'back'}}Avbryt

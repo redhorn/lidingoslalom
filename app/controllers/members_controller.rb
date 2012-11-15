@@ -5,7 +5,7 @@ class MembersController < ApplicationController
       @members = Member.all
     else
       @group = Group.find(params[:group_id])
-      @members = Member.find_by_group_id(@group.id) || []
+      @members = Member.where(group_id: @group.id)
     end
 
     respond_to do |format|
@@ -17,6 +17,7 @@ class MembersController < ApplicationController
   # GET /members/1
   # GET /members/1.json
   def show
+    @group = Group.find(params[:group_id])
     @member = Member.find(params[:id])
 
     respond_to do |format|
@@ -28,6 +29,7 @@ class MembersController < ApplicationController
   # GET /members/new
   # GET /members/new.json
   def new
+    @group = Group.find(params[:group_id])
     @member = Member.new
 
     respond_to do |format|
@@ -38,17 +40,20 @@ class MembersController < ApplicationController
 
   # GET /members/1/edit
   def edit
+    @group = Group.find(params[:group_id])
     @member = Member.find(params[:id])
   end
 
   # POST /members
   # POST /members.json
   def create
+    @group = Group.find(params[:group_id])
     @member = Member.new(params[:member])
+    @member.group_id = @group.id
 
     respond_to do |format|
       if @member.save
-        format.html { redirect_to @member, notice: 'Member was successfully created.' }
+        format.html { redirect_to group_members_path, notice: 'Member was successfully created.' }
         format.json { render json: @member, status: :created, location: @member }
       else
         format.html { render action: "new" }
@@ -64,7 +69,7 @@ class MembersController < ApplicationController
 
     respond_to do |format|
       if @member.update_attributes(params[:member])
-        format.html { redirect_to @member, notice: 'Member was successfully updated.' }
+        format.html { redirect_to group_members_path, notice: 'Member was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

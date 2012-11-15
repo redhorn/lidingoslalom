@@ -1,0 +1,26 @@
+%div{data: {role: 'page'}}
+	.ui-bar-a.userinfo
+		Inloggad som: Joel Lundberg
+	%div{data: {role: 'content'}}
+		.logo= image_tag('logo-top.png')
+		.ui-bar-a
+			%h2= @group.name
+
+		%h3 #{@member.name} (-#{@member.dateofbirth.strftime("%y")})
+		%p
+			Antal träningar:
+			%br
+			Antal missade träningar:
+			%br
+			Senaste närvaron:
+
+		%h4{style: "margin-bottom:0px;"} Förälder
+		%p{style: "margin-top:5px;margin-bottom:30px;"}
+			#{@member.parent_name}
+			%br
+			Telefonnummer:
+			%a{href: "tel:#{@member.parent_phone}"}#{@member.parent_phone}
+			%br
+			E-mail:
+			%a{href: "mailto:#{@member.parent_email}"}#{@member.parent_email}
+		%a{data: {role: 'button', theme: 'b', icon: 'arrow-l', rel: 'back'}}Tillbaka till listan

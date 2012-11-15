@@ -10,6 +10,23 @@ class PracticesController < ApplicationController
     end
   end
 
+  def regindex
+    @group = Group.find(params[:group_id])
+    @practices = Practice.where(group_id: @group.id)
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @practices }
+    end
+  end
+
+  def register
+    @group = Group.find(params[:group_id])
+    @practice = Practice.find(params[:practice_id])
+    @members = Member.where(group_id: @group.id)
+    @attendance = Attendance.new
+  end
+
   def show
     @practice = Practice.find(params[:id])
 
@@ -30,6 +47,7 @@ class PracticesController < ApplicationController
   end
 
   def edit
+    @group = Group.find(params[:group_id])
     @practice = Practice.find(params[:id])
   end
 
@@ -54,7 +72,7 @@ class PracticesController < ApplicationController
 
     respond_to do |format|
       if @practice.update_attributes(params[:practice])
-        format.html { redirect_to @practice, notice: 'Practice was successfully updated.' }
+        format.html { redirect_to group_practices_path, notice: 'Practice was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

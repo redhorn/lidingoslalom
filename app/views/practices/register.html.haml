@@ -1,0 +1,26 @@
+%div{data: {role: 'page'}}
+	.ui-bar-a.userinfo
+		Inloggad som: Joel Lundberg
+	%div{data: {role: 'content'}}
+		.logo= image_tag('logo-top.png')
+		.ui-bar-a
+			%h2= @group.name
+		.ui-bar-b.info
+			#{@practice.date.strftime("%A %Y-%m-%d")}
+			%br
+			#{@practice.location}
+
+		.ui-body.ui-body-e{style: "margin-top: 20px"}
+			Alla medlemmar är förvalda som närvarande på träningen. Du markerar endast frånvaro.
+
+		%h3{style: "margin-bottom: 20px;"}Markera frånvaro
+		= form_for(@attendance) do |f|
+			= hidden_field_tag "group_id", "#{@group.id}"
+			= hidden_field_tag "practice_id", "#{@practice.id}"
+			%fieldset{data: {role: 'controlgroup'}}
+				- @members.each do |member|
+					= check_box_tag "cb-#{member.id}", "#{member.id}", true
+					= label_tag "cb-#{member.id}", "#{member.name} (-#{member.dateofbirth.strftime('%y')})"
+			= f.submit "Registrera närvaro", 'data-theme' => 'a', 'data-icon' => 'check'
+			%a{data: {role: 'button', theme: 'e', icon: 'back'}}Nollställ
+			%a{data: {rel: 'back', role: 'button', theme: 'r', icon: 'delete'}}Avbryt
