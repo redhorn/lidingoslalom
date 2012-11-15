@@ -13,4 +13,4 @@
           %a{href: edit_group_practice_path(@group, practice)}
             #{practice.date.strftime("%A %Y-%m-%d")}
 
-  = link_to 'New Practice', new_group_practice_path
+    %a{href: new_group_practice_path, data: {role: 'button', icon: 'plus'}}Lägg till träning
