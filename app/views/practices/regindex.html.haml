@@ -2,7 +2,7 @@
   .ui-bar-a.userinfo
     Inloggad som: Stefan Pettersson Noord
   %div{data: {role: 'content'}}
-    .logo= image_tag('logo-top.png')
+    .logo= link_to image_tag('logo-top.png'), "/groups", 'data-direction' => 'reverse'
     .ui-bar-a
       %h2= @group.name
 
