@@ -12,8 +12,11 @@
   = f.label "Födelsedatum", style: "display: block; text-align: center"
   %fieldset{data: {role: 'controlgroup', type: 'horizontal'}, style: "text-align: center"}
     = date_select :member, :dateofbirth, { start_year: 1990, end_year: Time.now.year, prompt: false }
-  = f.text_field :parent_name, placeholder: 'Förälders namn'
-  = f.text_field :parent_phone, placeholder: 'Förälders telefonnummer'
-  = f.text_field :parent_email, placeholder: 'Förälders e-mail'
+  = f.text_field :parent_name, placeholder: 'Förälder #1 namn'
+  = f.text_field :parent_phone, placeholder: 'Förälder #1 telefonnummer'
+  = f.text_field :parent_email, placeholder: 'Förälder #1 e-mail'
+  = f.text_field :parent2_name, placeholder: 'Förälder #2 namn'
+  = f.text_field :parent2_phone, placeholder: 'Förälder #2 telefonnummer'
+  = f.text_field :parent2_email, placeholder: 'Förälder #2 e-mail'
   = f.submit({data: {theme: 'a', icon: 'arrow-r'}})
   %a{data: {role: 'button', theme: 'r', icon: 'delete', rel: 'back'}}Avbryt
