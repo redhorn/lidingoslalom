@@ -2,10 +2,10 @@ class MembersController < ApplicationController
 
   def index
     if params[:group_id].nil?
-      @members = Member.all
+      @members = Member.all.order("name ASC")
     else
       @group = Group.find(params[:group_id])
-      @members = Member.where(group_id: @group.id)
+      @members = Member.where(group_id: @group.id).order("name ASC")
     end
 
     respond_to do |format|

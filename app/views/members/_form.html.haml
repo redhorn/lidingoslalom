@@ -9,6 +9,7 @@
           %li= msg
 
   = f.text_field :name, placeholder: 'Namn'
+  = f.text_field :ref_number, placeholder: 'Medlemsnummer'
   = f.label "Födelsedatum", style: "display: block; text-align: center"
   %fieldset{data: {role: 'controlgroup', type: 'horizontal'}, style: "text-align: center"}
     = date_select :member, :dateofbirth, { start_year: 1990, end_year: Time.now.year, prompt: false }
