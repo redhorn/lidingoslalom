@@ -1,4 +1,5 @@
 class PracticesController < ApplicationController
+  before_filter :signed_in_user
 
   def index
     @group = Group.find(params[:group_id])
@@ -23,7 +24,7 @@ class PracticesController < ApplicationController
   def register
     @group = Group.find(params[:group_id])
     @practice = Practice.find(params[:practice_id])
-    @members = Member.where(group_id: @group.id)
+    @members = Member.where(group_id: @group.id).order("extract('year' from dateofbirth) ASC, name ASC")
     @attendance = Attendance.new
   end
 

@@ -1,4 +1,5 @@
 class MembersController < ApplicationController
+  before_filter :signed_in_user
 
   def index
     if params[:group_id].nil?
@@ -14,8 +15,6 @@ class MembersController < ApplicationController
     end
   end
 
-  # GET /members/1
-  # GET /members/1.json
   def show
     @group = Group.find(params[:group_id])
     @member = Member.find(params[:id])
@@ -26,31 +25,26 @@ class MembersController < ApplicationController
     end
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html
       format.json { render json: @member }
     end
   end
 
-  # GET /members/new
-  # GET /members/new.json
   def new
     @group = Group.find(params[:group_id])
     @member = Member.new
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html
       format.json { render json: @member }
     end
   end
 
-  # GET /members/1/edit
   def edit
     @group = Group.find(params[:group_id])
     @member = Member.find(params[:id])
   end
 
-  # POST /members
-  # POST /members.json
   def create
     @group = Group.find(params[:group_id])
     @member = Member.new(params[:member])
@@ -67,8 +61,6 @@ class MembersController < ApplicationController
     end
   end
 
-  # PUT /members/1
-  # PUT /members/1.json
   def update
     @member = Member.find(params[:id])
 
@@ -83,14 +75,15 @@ class MembersController < ApplicationController
     end
   end
 
-  # DELETE /members/1
-  # DELETE /members/1.json
   def destroy
     @member = Member.find(params[:id])
+    @member.attendances.each do |a|
+      a.destroy
+    end
     @member.destroy
 
     respond_to do |format|
-      format.html { redirect_to members_url }
+      format.html { redirect_to group_members_path }
       format.json { head :no_content }
     end
   end

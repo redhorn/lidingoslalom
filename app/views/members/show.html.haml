@@ -33,4 +33,6 @@
 			E-mail:
 			%a{href: "mailto:#{@member.parent2_email}"}#{@member.parent2_email}
 		%a{href: edit_group_member_path, data: {role: 'button'}}Redigera medlemsuppgifter
+		- if current_user.admin?
+			=button_to "Ta bort medlem", group_member_path, method: :delete, confirm: "Are you sure?", data: {role: 'button', theme: 'r', icon: 'delete'}
 		%a{data: {role: 'button', theme: 'b', icon: 'arrow-l', rel: 'back'}}Tillbaka till listan

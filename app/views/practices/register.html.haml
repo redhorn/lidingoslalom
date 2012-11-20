@@ -10,18 +10,14 @@
 			%br
 			#{@practice.location}
 
-		- if @practice.attendances.empty?
-			.ui-body.ui-body-e{style: "margin-top: 20px"}
-				Alla medlemmar är förvalda som närvarande på träningen. Du markerar endast frånvaro.
-
-		%h3{style: "margin-bottom: 20px;"}Markera frånvaro
+		%h3{style: "margin-bottom: 20px;"}Markera närvaro
 		= form_for(@attendance) do |f|
 			= hidden_field_tag "group_id", "#{@group.id}"
 			= hidden_field_tag "practice_id", "#{@practice.id}"
 			%fieldset{data: {role: 'controlgroup'}}
 				- @members.each do |member|
 					- if member.attendances.where(practice_id: @practice.id).empty?
-						-	att = true
+						-	att = false
 					- else
 						- att = member.attendances.where(practice_id: @practice.id).first.attended
 					= hidden_field_tag "members[m#{member.id}]", "#{member.id},n"

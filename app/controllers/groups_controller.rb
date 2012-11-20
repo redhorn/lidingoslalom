@@ -1,7 +1,8 @@
 class GroupsController < ApplicationController
+  before_filter :signed_in_user
 
   def index
-    @groups = Group.all
+    @groups = Group.order("sort_order ASC")
 
     respond_to do |format|
       format.html

@@ -2,11 +2,11 @@
 	.ui-bar-a.userinfo
 		Inloggad som: Stefan Pettersson Noord
 	%div{data: {role: 'content'}}
-    .logo= link_to image_tag('logo-top.png'), "/groups", 'data-direction' => 'reverse'
+		.logo= link_to image_tag('logo-top.png'), "/groups", 'data-direction' => 'reverse'
 		.ui-bar-a
 			%h2= @group.name
-			.ui-bar-e.info
-				Registreringen av närvaron på träningen är genomförd
+		.ui-bar-e.info
+			Registreringen av närvaron på träningen är genomförd
 		%h3{style: "margin-bottom: 10px;"} Vad vill du göra nu?
 		%a{href: '/groups/', data: {role: 'button', icon: 'arrow-r', iconpos: 'right'}}Gå till startsidan
 		%a{href: '/', data: {theme: 'r', role: 'button'}}Logga ut

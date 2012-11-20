@@ -1,4 +1,5 @@
 class AttendancesController < ApplicationController
+  before_filter :signed_in_user
 
 	def create
 		@group = Group.find(params[:group_id])

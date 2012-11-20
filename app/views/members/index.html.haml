@@ -16,4 +16,5 @@
             %span.parentinfo
               #{member.parent_name}: #{member.parent_phone}
 
-    %a{href: new_group_member_path, data: {role: 'button', icon: 'plus'}}Lägg till medlem
+    - if current_user.admin?
+      %a{href: new_group_member_path, data: {role: 'button', icon: 'plus'}}Lägg till medlem
