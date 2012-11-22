@@ -17,7 +17,7 @@
 			- if signed_in?
 				.ui-bar-a.userinfo
 					%span{style: "margin-left: 50px;"}
-						Inloggad som: #{current_user.name}
+						Inloggad som: #{truncate(current_user.name, length: 20)}
 					%span{style: "float: right;"}
 						= link_to "Logga ut", signout_path, method: 'delete'
 			- else
