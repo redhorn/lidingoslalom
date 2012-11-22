@@ -16,10 +16,7 @@
 		%div{data: {role: 'page', url: data_url(yield(:url))}}
 			- if signed_in?
 				.ui-bar-a.userinfo
-					%span{style: "margin-left: 50px;"}
-						Inloggad som: #{truncate(current_user.name, length: 20)}
-					%span{style: "float: right;"}
-						= link_to "Logga ut", signout_path, method: 'delete'
+					Inloggad som: #{truncate(current_user.name, length: 30)}
 			- else
 				%div{data: {role: 'header', theme: 'b'}}
 					%h1 Närvarohanteraren
