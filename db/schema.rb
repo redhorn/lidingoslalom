@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121120200125) do
+ActiveRecord::Schema.define(:version => 20121122094121) do
 
   create_table "attendances", :force => true do |t|
     t.integer  "member_id"
@@ -31,16 +31,15 @@ ActiveRecord::Schema.define(:version => 20121120200125) do
   create_table "members", :force => true do |t|
     t.string   "name"
     t.integer  "group_id"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
-    t.string   "parent_name"
-    t.string   "parent_phone"
-    t.string   "parent_email"
-    t.date     "dateofbirth"
-    t.string   "parent2_name"
-    t.string   "parent2_phone"
-    t.string   "parent2_email"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+    t.string   "contact1_phone"
+    t.string   "contact1_email"
+    t.date     "birthyear"
+    t.string   "contact2_phone"
+    t.string   "contact2_email"
     t.string   "ref_number"
+    t.string   "group_name"
   end
 
   create_table "practices", :force => true do |t|

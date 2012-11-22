@@ -1,20 +1,10 @@
-%div{data: {role: 'page', url: "/groups/#{@group.id}/members/"}}
-  .ui-bar-a.userinfo
-    Inloggad som: Stefan Pettersson Noord
-  %div{data: {role: 'content'}}
-    .logo= link_to image_tag('logo-top.png'), "/groups", 'data-direction' => 'reverse'
-    .ui-bar-a
-      %h2= @group.name
+- provide(:url, "/groups/#{@group.id}/members/")
+%h3{style: "margin-bottom: 20px;"}Alla medlemmar i gruppen
+%ul{data: {role: 'listview', inset: 'true', filter: 'true'}}
+  - @members.each do |member|
+    %li
+      %a{href: group_member_path(@group, member)}
+        #{member.name} (-#{member.birthyear.strftime("%y")})
 
-    %h3{style: "margin-bottom: 20px;"}Alla medlemmar i gruppen
-    %ul{data: {role: 'listview', inset: 'true', filter: 'true'}}
-      - @members.each do |member|
-        %li
-          %a{href: group_member_path(@group, member)}
-            #{member.name} (-#{member.dateofbirth.strftime("%y")})
-            %br
-            %span.parentinfo
-              #{member.parent_name}: #{member.parent_phone}
-
-    - if current_user.admin?
-      %a{href: new_group_member_path, data: {role: 'button', icon: 'plus'}}Lägg till medlem
+- if current_user.admin?
+  %a{href: new_group_member_path, data: {role: 'button', icon: 'plus'}}Lägg till medlem

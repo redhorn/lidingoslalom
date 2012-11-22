@@ -1,12 +1,6 @@
-%div{data: {role: 'page', url: "/groups/#{@group.id}/actions/"}}
-	.ui-bar-a.userinfo
-		Inloggad som: Stefan Pettersson Noord
-	%div{data: {role: 'content'}}
-		.logo= link_to image_tag('logo-top.png'), "/groups", 'data-direction' => 'reverse'
-		.ui-bar-a
-			%h2= @group.name
-		%ul{data: {role: 'listview', inset: 'true'}}
-			%li= link_to 'Registrera närvaro', "/groups/#{@group.id}/register", :class => 'refresh-page'
-			%li= link_to 'Visa alla träningar', group_practices_path(@group)
-			%li= link_to 'Lägg till träning', new_group_practice_path(@group)
-			%li= link_to 'Se kontaktlista', group_members_path(@group)
+- provide(:url, "/groups/#{@group.id}/actions/")
+%ul{data: {role: 'listview', inset: 'true'}}
+	%li= link_to 'Registrera närvaro', "/groups/#{@group.id}/register", :class => 'refresh-page'
+	%li= link_to 'Visa alla träningar', group_practices_path(@group)
+	%li= link_to 'Lägg till träning', new_group_practice_path(@group)
+	%li= link_to 'Se kontaktlista', group_members_path(@group)

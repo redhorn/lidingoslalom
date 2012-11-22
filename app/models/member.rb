@@ -1,5 +1,5 @@
 class Member < ActiveRecord::Base
-  attr_accessible :name, :ref_number, :dateofbirth, :parent_name, :parent_phone, :parent_email, :parent2_name, :parent2_phone, :parent2_email, :group_id
+  attr_accessible :name, :ref_number, :birthyear, :contact1_phone, :contact1_email, :contact2_phone, :contact2_email, :group_name, :group_id
   belongs_to :group
   has_many :attendances
   has_many :practices, :through => :attendances

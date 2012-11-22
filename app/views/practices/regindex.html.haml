@@ -1,17 +1,9 @@
-%div{data: {role: 'page'}}
-  .ui-bar-a.userinfo
-    Inloggad som: Stefan Pettersson Noord
-  %div{data: {role: 'content'}}
-    .logo= link_to image_tag('logo-top.png'), "/groups", 'data-direction' => 'reverse'
-    .ui-bar-a
-      %h2= @group.name
+%h3{style: "margin-bottom: 20px;"}Välj träningstillfälle för närvaro
+%ul{data: {role: 'listview', inset: 'true', refresh: 'true'}}
+  - @practices.each do |practice|
+  -   theme = practice.attendances.empty? ? 'r' : 'c'
+    %li{data: {theme: "#{theme}"}}
+      %a{href: "practices/#{practice.id}/register"}
+        #{practice.date.strftime("%A %Y-%m-%d")}
 
-    %h3{style: "margin-bottom: 20px;"}Välj träningstillfälle för närvaro
-    %ul{data: {role: 'listview', inset: 'true', refresh: 'true'}}
-      - @practices.each do |practice|
-      -   theme = practice.attendances.empty? ? 'r' : 'c'
-        %li{data: {theme: "#{theme}"}}
-          %a{href: "practices/#{practice.id}/register"}
-            #{practice.date.strftime("%A %Y-%m-%d")}
-
-    %a{href: new_group_practice_path, data: {role: 'button', icon: 'plus'}}Lägg till träning
+%a{href: new_group_practice_path, data: {role: 'button', icon: 'plus'}}Lägg till träning

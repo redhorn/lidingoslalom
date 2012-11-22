@@ -1,20 +1,16 @@
-%div{data: {role: 'page', url: '/groups/'}}
-	.ui-bar-a.userinfo
-		Inloggad som: Stefan Pettersson Noord
-	%div{data: {role: 'content'}}
-		.logo= link_to image_tag('logo-top.png'), "/groups", 'data-direction' => 'reverse'
-		%h2 Välj träningsgrupp
-		%ul{data: {role: 'listview', inset: 'true'}}
-			= render @groups
-		- if current_user.admin?
-			%a{href: new_group_path, data: {role: 'button', icon: 'plus'}}Lägg till grupp
+- provide(:url, '/groups/')
+%h2 Välj träningsgrupp
+%ul{data: {role: 'listview', inset: 'true'}}
+	= render @groups
+- if current_user.admin?
+	%a{href: new_group_path, data: {role: 'button', icon: 'plus'}}Lägg till grupp
 
-		%h2{style: "margin-top: 30px;"} Meddelanden från medlemsansvarig / styrelse
-		.ui-body.ui-body-e
-			%b 2012-11-14
-			%br
-			Glöm inte att du måste...
-		.ui-body.ui-body-e
-			%b 2012-11-12
-			%br
-			Glöm inte att du måste...
+%h2{style: "margin-top: 30px;"} Meddelanden från medlemsansvarig / styrelse
+.ui-body.ui-body-e
+	%b 2012-11-14
+	%br
+	Glöm inte att du måste...
+.ui-body.ui-body-e
+	%b 2012-11-12
+	%br
+	Glöm inte att du måste...

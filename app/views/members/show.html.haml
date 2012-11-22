@@ -1,38 +1,26 @@
-%div{data: {role: 'page'}}
-	.ui-bar-a.userinfo
-		Inloggad som: Stefan Pettersson Noord
-	%div{data: {role: 'content'}}
-		.logo= link_to image_tag('logo-top.png'), "/groups", 'data-direction' => 'reverse'
-		.ui-bar-a
-			%h2= @group.name
+%h3 #{@member.name} (-#{@member.birthyear.strftime("%y")})
+%p
+	Antal träningar: #{@num_practices}
+	%br
+	Antal missade träningar: #{@num_missed_practices}
+	%br
+	Senaste närvaron: #{@latest_attendance}
 
-		%h3 #{@member.name} (-#{@member.dateofbirth.strftime("%y")})
-		%p
-			Antal träningar: #{@num_practices}
-			%br
-			Antal missade träningar: #{@num_missed_practices}
-			%br
-			Senaste närvaron: #{@latest_attendance}
-
-		%h4{style: "margin-bottom:0px;"} Kontaktperson #1
-		%p{style: "margin-top:5px;margin-bottom:30px;"}
-			#{@member.parent_name}
-			%br
-			Telefonnummer:
-			%a{href: "tel:#{@member.parent_phone}"}#{@member.parent_phone}
-			%br
-			E-mail:
-			%a{href: "mailto:#{@member.parent_email}"}#{@member.parent_email}
-		%h4{style: "margin-bottom:0px;"} Kontaktperson #2
-		%p{style: "margin-top:5px;margin-bottom:30px;"}
-			#{@member.parent2_name}
-			%br
-			Telefonnummer:
-			%a{href: "tel:#{@member.parent2_phone}"}#{@member.parent2_phone}
-			%br
-			E-mail:
-			%a{href: "mailto:#{@member.parent2_email}"}#{@member.parent2_email}
-		%a{href: edit_group_member_path, data: {role: 'button'}}Redigera medlemsuppgifter
-		- if current_user.admin?
-			=button_to "Ta bort medlem", group_member_path, method: :delete, confirm: "Are you sure?", data: {role: 'button', theme: 'r', icon: 'delete'}
-		%a{data: {role: 'button', theme: 'b', icon: 'arrow-l', rel: 'back'}}Tillbaka till listan
+%h4{style: "margin-bottom:0px;"} Kontaktperson #1
+%p{style: "margin-top:5px;margin-bottom:30px;"}
+	Telefonnummer:
+	%a{href: "tel:#{@member.contact1_phone}"}#{@member.contact1_phone}
+	%br
+	E-mail:
+	%a{href: "mailto:#{@member.contact1_email}"}#{@member.contact1_email}
+%h4{style: "margin-bottom:0px;"} Kontaktperson #2
+%p{style: "margin-top:5px;margin-bottom:30px;"}
+	Telefonnummer:
+	%a{href: "tel:#{@member.contact2_phone}"}#{@member.contact2_phone}
+	%br
+	E-mail:
+	%a{href: "mailto:#{@member.contact2_email}"}#{@member.contact2_email}
+%a{href: edit_group_member_path, data: {role: 'button'}}Redigera medlemsuppgifter
+- if current_user.admin?
+	=button_to "Ta bort medlem", group_member_path, method: :delete, confirm: "Are you sure?", data: {role: 'button', theme: 'r', icon: 'delete'}
+%a{data: {role: 'button', theme: 'b', icon: 'arrow-l', rel: 'back'}}Tillbaka till listan

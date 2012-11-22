@@ -1,0 +1,34 @@
+!!!
+%html
+	%head
+		%title Närvaro
+		= stylesheet_link_tag "application", :media => "all"
+		= javascript_include_tag "application"
+		%meta{ name: "viewport", content: "width=device-width, initial-scale=1" }
+		= csrf_meta_tags
+		%link{ rel: "shortcut icon", href: "/favicon.ico" }
+		%link{ rel: "shortcut icon", href: "/favicon.png" }
+		%link{ rel: "apple-touch-icon", href: "/assets/apple-touch-icon.png" }
+		%link{ rel: "apple-touch-icon", href: "/assets/apple-touch-icon-72x72.png", sizes: "72x72" }
+		%link{ rel: "apple-touch-icon", href: "/assets/apple-touch-icon-114x114.png", sizes: "114x114" }
+		%link{ rel: "apple-touch-icon", href: "/assets/apple-touch-icon-144x144.png", sizes: "144x144" }
+	%body
+		%div{data: {role: 'page', url: data_url(yield(:url))}}
+			- if signed_in?
+				.ui-bar-a.userinfo
+					%span{style: "margin-left: 50px;"}
+						Inloggad som: #{current_user.name}
+					%span{style: "float: right;"}
+						= link_to "Logga ut", signout_path, method: 'delete'
+			- else
+				%div{data: {role: 'header', theme: 'b'}}
+					%h1 Närvarohanteraren
+			%div{data: {role: 'content'}}
+				- if signed_in?
+					.logo= link_to image_tag('logo-top.png'), "/groups", 'data-direction' => 'reverse'
+				- else
+					.logo= image_tag('logo-center.png')
+				- if @group and @group.name != nil
+					.ui-bar-a
+						%h2= @group.name
+				= yield

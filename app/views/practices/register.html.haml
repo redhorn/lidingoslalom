@@ -1,28 +1,22 @@
-%div{data: {role: 'page'}}
-	.ui-bar-a.userinfo
-		Inloggad som: Stefan Pettersson Noord
-	%div{data: {role: 'content'}}
-		.logo= link_to image_tag('logo-top.png'), "/groups", 'data-direction' => 'reverse'
-		.ui-bar-a
-			%h2= @group.name
-		.ui-bar-b.info
-			#{@practice.date.strftime("%A %Y-%m-%d")}
-			%br
-			#{@practice.location}
+.ui-bar-b.info
+	#{@practice.date.strftime("%A %Y-%m-%d")}
+	%br
+	#{@practice.location}
 
-		%h3{style: "margin-bottom: 20px;"}Markera närvaro
-		= form_for(@attendance) do |f|
-			= hidden_field_tag "group_id", "#{@group.id}"
-			= hidden_field_tag "practice_id", "#{@practice.id}"
-			%fieldset{data: {role: 'controlgroup'}}
-				- @members.each do |member|
-					- if member.attendances.where(practice_id: @practice.id).empty?
-						-	att = false
-					- else
-						- att = member.attendances.where(practice_id: @practice.id).first.attended
-					= hidden_field_tag "members[m#{member.id}]", "#{member.id},n"
-					= check_box_tag "members[m#{member.id}]", "#{member.id},y", att
-					= label_tag "members[m#{member.id}]", "#{member.name} (-#{member.dateofbirth.strftime('%y')})"
-			= f.submit "Registrera närvaro", 'data-theme' => 'a', 'data-icon' => 'check'
-			%a{data: {role: 'button', theme: 'e', icon: 'back'}}Nollställ
-			%a{data: {rel: 'back', role: 'button', theme: 'r', icon: 'delete'}}Avbryt
+%h3{style: "margin-bottom: 20px;"}Markera närvaro
+= form_for(@attendance) do |f|
+	= hidden_field_tag "group_id", "#{@group.id}"
+	= hidden_field_tag "practice_id", "#{@practice.id}"
+	%fieldset{data: {role: 'controlgroup'}}
+		- @members.each do |member|
+			- if member.attendances.where(practice_id: @practice.id).empty?
+				-	att = false
+			- else
+				- att = member.attendances.where(practice_id: @practice.id).first.attended
+			= hidden_field_tag "members[m#{member.id}]", "#{member.id},n"
+			= check_box_tag "members[m#{member.id}]", "#{member.id},y", att
+			= label_tag "members[m#{member.id}]", "#{member.name} (-#{member.birthyear.strftime('%y')})"
+	%div{style: "margin-top: 30px;"}
+		= f.submit "Registrera närvaro", 'data-theme' => 'a', 'data-icon' => 'check'
+	%a{data: {role: 'button', theme: 'e', icon: 'back'}}Nollställ
+	%a{data: {rel: 'back', role: 'button', theme: 'r', icon: 'delete'}}Avbryt

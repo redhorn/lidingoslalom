@@ -1,11 +1,6 @@
-%div{data: {role: 'page'}}
-  %div{data: {role: 'header', theme: 'b'}}
-    %h1 Närvarohanteraren
-  %div{data: {role: 'content'}}
-    .logo
-      = image_tag('logo-center.png')
-    = form_tag sessions_path do
-      %fieldset
-        = text_field_tag :email, '', placeholder: "E-mail"
-        = password_field_tag :password, '', placeholder: "Lösenord"
-        = submit_tag 'Logga in'
+- provide(:url, '/')
+= form_tag sessions_path do
+  %fieldset
+    = text_field_tag :email, '', placeholder: "E-mail"
+    = password_field_tag :password, '', placeholder: "Lösenord"
+    = submit_tag 'Logga in'
