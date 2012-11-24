@@ -1,0 +1,8 @@
+sv:
+  activerecord:
+    models:
+      member: medlem
+      practice: träning
+    attributes:
+      member:
+        name: Namn

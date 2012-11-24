@@ -1,6 +1,6 @@
 - provide(:url, "/groups/#{@group.id}/members/")
 %h3{style: "margin-bottom: 20px;"}Alla medlemmar i gruppen
-%ul{data: {role: 'listview', inset: 'true', filter: 'true'}}
+%ul{data: {role: 'listview', inset: 'true', filter: 'true', 'filter-placeholder' => 'Sök i listan...'}}
   - @members.each do |member|
     %li
       %a{href: group_member_path(@group, member)}

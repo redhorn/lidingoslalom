@@ -4,6 +4,12 @@
 	#{@practice.location}
 
 %h3{style: "margin-bottom: 20px;"}Markera närvaro
+
+%div{data: {role: 'controlgroup', type: 'horizontal'}}
+	= link_to "A-Ö", "?sort=az", data: {transition: 'none', role: 'button', theme: @sort == 'az' ? 'b' : 'c'}
+	= link_to "Födelseår", "?sort=birthyear", data: {transition: 'none', role: 'button', theme: @sort == 'birthyear' ? 'b' : 'c'}
+	= link_to "Grupp", "?sort=group", data: {transition: 'none', role: 'button', theme: @sort == 'group' ? 'b' : 'c'}
+
 = form_for(@attendance) do |f|
 	= hidden_field_tag "group_id", "#{@group.id}"
 	= hidden_field_tag "practice_id", "#{@practice.id}"

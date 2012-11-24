@@ -51,6 +51,10 @@ h3 {
 	font-size: 0.9em;
 }
 
+.list-practice-location {
+	opacity: 0.7;
+	font-size: 14px;
+}
 
 label.ui-checkbox-on {
 	color: white;

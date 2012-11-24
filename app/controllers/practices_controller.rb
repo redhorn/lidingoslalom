@@ -24,7 +24,15 @@ class PracticesController < ApplicationController
   def register
     @group = Group.find(params[:group_id])
     @practice = Practice.find(params[:practice_id])
-    @members = Member.where(group_id: @group.id).order("extract('year' from birthyear) ASC, name ASC")
+    @sort = params[:sort] || "az"
+    if @sort == "az"
+      sort_order = "name ASC"
+    elsif @sort == "birthyear"
+      sort_order = "extract('year' from birthyear) ASC, name ASC"
+    elsif @sort == "group"
+      sort_order = "group_name ASC, name ASC"
+    end
+    @members = Member.where(group_id: @group.id).order(sort_order)
     @attendance = Attendance.new
   end
 

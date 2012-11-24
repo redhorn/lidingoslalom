@@ -1,9 +1,10 @@
-%h3{style: "margin-bottom: 20px;"}Välj träningstillfälle för närvaro
+%h3{style: "margin-bottom: 20px;"}Välj träningstillfälle
 %ul{data: {role: 'listview', inset: 'true', refresh: 'true'}}
-  - @practices.each do |practice|
-  -   theme = practice.attendances.empty? ? 'r' : 'c'
-    %li{data: {theme: "#{theme}"}}
-      %a{href: "practices/#{practice.id}/register"}
-        #{practice.date.strftime("%A %Y-%m-%d")}
+	- @practices.each do |practice|
+		- theme = practice.attendances.empty? ? 'r' : 'c'
+		%li{data: {theme: "#{theme}"}}
+			%a{href: "practices/#{practice.id}/register"}
+				#{l(practice.date, format: "%A %Y-%m-%d").capitalize}
+				%div{class: 'list-practice-location'}= practice.location
 
 %a{href: new_group_practice_path, data: {role: 'button', icon: 'plus'}}Lägg till träning

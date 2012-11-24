@@ -10,6 +10,7 @@
 
   = f.text_field :name, placeholder: 'Namn'
   = f.text_field :ref_number, placeholder: 'Medlemsnummer'
+  = f.text_field :group_name, placeholder: 'Gruppnamn'
   = f.label "Födelseår", style: "display: block; text-align: center"
   %fieldset{data: {role: 'controlgroup', type: 'horizontal'}, style: "text-align: center"}
     = date_select :member, :birthyear, { start_year: 1990, end_year: Time.now.year, discard_month: true, discard_day: true, prompt: false }
