@@ -3,6 +3,7 @@ sv:
     models:
       member: medlem
       practice: träning
+      group: grupp
     attributes:
       member:
         name: Namn
