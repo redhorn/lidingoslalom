@@ -20,7 +20,7 @@ class MembersController < ApplicationController
     @member = Member.find(params[:id])
     @num_practices = @member.attendances.where(attended: true).size
     @num_missed_practices = @member.attendances.where(attended: false).size
-    unless @member.practices.empty?
+    unless @member.practices.empty? or @num_practices == 0
       @latest_attendance = @member.practices.order("date DESC").first.date
     end
 
