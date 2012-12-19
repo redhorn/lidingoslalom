@@ -24,5 +24,5 @@
 			= label_tag "members[m#{member.id}]", "#{member.name} (-#{member.birthyear.strftime('%y')})"
 	%div{style: "margin-top: 30px;"}
 		= f.submit "Registrera närvaro", 'data-theme' => 'a', 'data-icon' => 'check'
-	%a{data: {role: 'button', theme: 'e', icon: 'back'}}Nollställ
+	%a{class: 'reset-btn', data: {target: '#new_attendance', role: 'button', theme: 'e', icon: 'back'}}Nollställ
 	%a{data: {rel: 'back', role: 'button', theme: 'r', icon: 'delete'}}Avbryt

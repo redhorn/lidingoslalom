@@ -11,5 +11,11 @@ $(document).bind("pageinit", function(){
 			reloadPage: true
 		});
 		return false;
-	})
+	});
+	//TODO: Also change appearance of button
+	$("a.reset-btn").bind("click", function() {
+		$($(this).attr("data-target")).find("input[type=checkbox]").each(function(){
+			$(this).removeAttr("checked");
+		});
+	});
 });
