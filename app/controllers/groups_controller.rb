@@ -73,4 +73,12 @@ class GroupsController < ApplicationController
   def actions
     @group = Group.find(params[:id])
   end
+
+  def export
+    @group = Group.find(params[:id])
+    @members = Member.where(group_id: @group.id).order("name ASC")
+    @practices = Practice.where(group_id: @group.id).order("date ASC")
+
+    render :layout => false
+  end
 end

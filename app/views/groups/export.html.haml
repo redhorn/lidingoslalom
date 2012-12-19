@@ -1,0 +1,15 @@
+%table
+	%tr
+		%td
+		- @practices.each do |p|
+			%td=p.date
+	- @members.each do |m|
+		%tr
+			%td=m.name
+			- @practices.each do |p|
+				- a = m.attendances.where(practice_id: p.id)
+				- if a.empty?
+					- attended = ""
+				- else
+					- attended = a.first.attended ? "1" : ""
+				%td=attended

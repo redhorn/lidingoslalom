@@ -1,5 +1,5 @@
 .ui-bar-b.info
-	#{@practice.date.strftime("%A %Y-%m-%d")}
+	#{l(@practice.date, format: "%A %Y-%m-%d").capitalize}
 	%br
 	#{@practice.location}
 
