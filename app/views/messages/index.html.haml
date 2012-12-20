@@ -1,0 +1,13 @@
+%h3{style: "margin-bottom: 20px;"}Meddelanden
+- @messages.each do |message|
+  .ui-body.ui-body-e
+    %b #{l(message.updated_at, format: "%Y-%m-%d").capitalize}
+    %br
+    #{message.text.gsub(/\n/, '<br>').html_safe}
+    %br
+    %br
+    %a{href: edit_message_path(message)}Redigera
+    |
+    =link_to "Ta bort", message_path(message), method: :delete, confirm: "Are you sure?"
+
+%a{href: new_message_path, data: {role: 'button', icon: 'plus'}}Nytt meddelande

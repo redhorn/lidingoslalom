@@ -6,12 +6,15 @@
 	%a{href: new_group_path, data: {role: 'button', icon: 'plus'}}Lägg till grupp
 
 %h2{style: "margin-top: 30px;"} Meddelanden från medlemsansvarig / styrelse
-.ui-body.ui-body-e
-	%b 2012-11-23
-	%br
-	Hej. Nu kör vi igång närvaroappen. För er som är uppe i Funäs på familjelägret så finns jag på plats för att svara på frågor och funderingar.
-	%br
-	&#47;Stefan
+- @messages.each do |m|
+	.ui-body.ui-body-e
+		%b #{l(m.updated_at, format: "%Y-%m-%d").capitalize}
+		%br
+		= m.text.gsub(/\n/, '<br>').html_safe
+
+- if current_user.admin?
+	%a{href: messages_path, data: {role: 'button'}}Hantera meddelanden
+
 
 %div{style: "margin-top:20px;"}
 	=button_to "Logga ut", signout_path, method: :delete, data: {role: 'button', theme: 'r'}

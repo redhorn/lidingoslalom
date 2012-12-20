@@ -1,0 +1,4 @@
+= form_for(@message) do |f|
+  = f.text_area :text, placeholder: 'Meddelande', style: "height: 100px;"
+  = f.submit({data: {theme: 'a', icon: 'arrow-r'}})
+  %a{data: {role: 'button', theme: 'r', icon: 'delete', rel: 'back'}}Avbryt

@@ -3,6 +3,7 @@ class GroupsController < ApplicationController
 
   def index
     @groups = Group.order("sort_order ASC")
+    @messages = Message.order("updated_at DESC")
 
     respond_to do |format|
       format.html

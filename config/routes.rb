@@ -7,6 +7,7 @@ Lidingoslalom::Application.routes.draw do
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   resources :attendances
+  resources :messages
 
   root to: 'sessions#new'
 
