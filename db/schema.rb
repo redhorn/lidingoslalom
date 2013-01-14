@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121220152016) do
+ActiveRecord::Schema.define(:version => 20130114135322) do
 
   create_table "attendances", :force => true do |t|
     t.integer  "member_id"
@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(:version => 20121220152016) do
   end
 
   create_table "messages", :force => true do |t|
-    t.string   "text"
+    t.text     "text"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
