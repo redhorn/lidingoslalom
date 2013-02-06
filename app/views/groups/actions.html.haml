@@ -3,6 +3,6 @@
 	%li= link_to 'Registrera närvaro', "/groups/#{@group.id}/register", :class => 'refresh-page'
 	%li= link_to 'Visa alla träningar', group_practices_path(@group)
 	%li= link_to 'Lägg till träning', new_group_practice_path(@group)
-	%li= link_to 'Se kontaktlista', group_members_path(@group)
+	%li= link_to 'Medlemslista', group_members_path(@group)
 	- if current_user.admin?
 		%li= link_to 'Exportera data', "/groups/#{@group.id}/export.xls", "data-ajax" => "false"
