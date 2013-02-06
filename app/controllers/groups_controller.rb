@@ -82,7 +82,7 @@ class GroupsController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.csv { send_data @group.to_csv }
+      format.csv { render text: @group.to_csv }
       format.xls
     end
   end

@@ -5,10 +5,11 @@
 #   gem 'sqlite3'
 development:
   adapter: postgresql
-  database: lidingoslalom_development
+#  database: lidingoslalom_development
+  database: newdb
   pool: 5
   username: Joel
-  password: 
+  password:
   timeout: 5000
 
 test:
@@ -16,5 +17,5 @@ test:
   database: lidingoslalom_test
   pool: 5
   username: Joel
-  password: 
+  password:
   timeout: 5000
