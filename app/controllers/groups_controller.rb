@@ -80,6 +80,10 @@ class GroupsController < ApplicationController
     @members = Member.where(group_id: @group.id).order("name ASC")
     @practices = Practice.where(group_id: @group.id).order("date ASC")
 
-    render :layout => false
+    respond_to do |format|
+      format.html
+      format.csv { send_data @group.to_csv }
+      format.xls
+    end
   end
 end

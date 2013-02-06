@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+  xmlns:x="urn:schemas-microsoft-com:office:excel"
+  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Worksheet ss:Name="Sheet1">
+    <Table>
+      <Row>
+        <Cell><Data ss:Type="String"><%= @group.name %></Data></Cell>
+      </Row>
+      <Row>
+        <Cell></Cell>
+        <% @practices.all(order: "date").each do |p| %>
+        <Cell><Data ss:Type="String"><%= p.date %></Data></Cell>
+        <% end %>
+      </Row>
+      <% @members.each do |m| %>
+      <Row>
+        <Cell><Data ss:Type="String"><%= m.name %></Data></Cell>
+        <%  @practices.all(order: "date").each do |p|
+              a = m.attendances.where(practice_id: p.id)
+              if a.empty?
+                attended = ""
+              else
+                attended = a.first.attended ? "1" : ""
+              end
+              if attended == "1"
+        %>
+          <Cell><Data ss:Type="Number"><%= attended %></Data></Cell>
+        <%    else %>
+          <Cell><Data ss:Type="String"></Data></Cell>
+        <%    end
+            end %>
+      </Row>
+      <% end %>
+    </Table>
+  </Worksheet>
+</Workbook>
