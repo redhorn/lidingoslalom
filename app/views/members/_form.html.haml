@@ -8,6 +8,8 @@
         - @member.errors.full_messages.each do |msg|
           %li= msg
 
+  = f.check_box :active
+  = label_tag "member_active", "Aktiv medlem"
   = f.text_field :name, placeholder: 'Namn'
   = f.text_field :ref_number, placeholder: 'Medlemsnummer'
   = f.text_field :group_name, placeholder: 'Gruppnamn'

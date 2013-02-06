@@ -14,7 +14,7 @@
 	= hidden_field_tag "group_id", "#{@group.id}"
 	= hidden_field_tag "practice_id", "#{@practice.id}"
 	%fieldset{data: {role: 'controlgroup'}}
-		- @members.each do |member|
+		- @members.where("active").each do |member|
 			- if member.attendances.where(practice_id: @practice.id).empty?
 				-	att = false
 			- else
