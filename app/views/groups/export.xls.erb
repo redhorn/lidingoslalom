@@ -7,17 +7,51 @@
   <Worksheet ss:Name="Sheet1">
     <Table>
       <Row>
-        <Cell><Data ss:Type="String"><%= @group.name %></Data></Cell>
+        <Cell><Data ss:Type="String">Grupp <%= @group.name %></Data></Cell>
       </Row>
       <Row>
         <Cell></Cell>
+        <Cell></Cell>
+        <Cell><Data ss:Type="String">Start kl</Data></Cell>
         <% @practices.all(order: "date").each do |p| %>
-        <Cell><Data ss:Type="String"><%= p.date %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= p.starts_at.strftime('%H') %></Data></Cell>
         <% end %>
+      </Row>
+      <Row>
+        <Cell></Cell>
+        <Cell></Cell>
+        <Cell><Data ss:Type="String">Slut kl</Data></Cell>
+        <% @practices.all(order: "date").each do |p| %>
+        <Cell><Data ss:Type="String"><%= p.ends_at.strftime('%H') %></Data></Cell>
+        <% end %>
+      </Row>
+      <Row></Row>
+      <Row>
+        <Cell></Cell>
+        <Cell></Cell>
+        <Cell><Data ss:Type="String">Månad</Data></Cell>
+        <% @practices.all(order: "date").each do |p| %>
+        <Cell><Data ss:Type="String"><%= p.date.strftime('%m') %></Data></Cell>
+        <% end %>
+      </Row>
+      <Row>
+        <Cell></Cell>
+        <Cell></Cell>
+        <Cell><Data ss:Type="String">Dag</Data></Cell>
+        <% @practices.all(order: "date").each do |p| %>
+        <Cell><Data ss:Type="String"><%= p.date.strftime('%d') %></Data></Cell>
+        <% end %>
+      </Row>
+      <Row>
+        <Cell><Data ss:Type="String">Medlemsnummer</Data></Cell>
+        <Cell><Data ss:Type="String">Namn</Data></Cell>
+        <Cell><Data ss:Type="String">Född</Data></Cell>
       </Row>
       <% @members.each do |m| %>
       <Row>
+        <Cell><Data ss:Type="String"><%= m.ref_number %></Data></Cell>
         <Cell><Data ss:Type="String"><%= m.name %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= m.birthyear.strftime('%y') %></Data></Cell>
         <%  @practices.all(order: "date").each do |p|
               a = m.attendances.where(practice_id: p.id)
               if a.empty?
