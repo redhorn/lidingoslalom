@@ -51,7 +51,11 @@
       <Row>
         <Cell><Data ss:Type="String"><%= m.ref_number %></Data></Cell>
         <Cell><Data ss:Type="String"><%= m.name %></Data></Cell>
+        <% if m.is_trainer %>
+        <Cell><Data ss:Type="String">Tränare</Data></Cell>
+        <% else %>
         <Cell><Data ss:Type="String"><%= m.birthyear.strftime('%y') %></Data></Cell>
+        <% end %>
         <%  @practices.all(order: "date").each do |p|
               a = m.attendances.where(practice_id: p.id)
               if a.empty?

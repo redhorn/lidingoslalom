@@ -77,7 +77,7 @@ class GroupsController < ApplicationController
 
   def export
     @group = Group.find(params[:id])
-    @members = Member.where(group_id: @group.id).order("name ASC")
+    @members = Member.where(group_id: @group.id).order("is_trainer DESC, name ASC")
     @practices = Practice.where(group_id: @group.id).order("date ASC")
 
     respond_to do |format|

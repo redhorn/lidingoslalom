@@ -21,7 +21,10 @@
 				- att = member.attendances.where(practice_id: @practice.id).first.attended
 			= hidden_field_tag "members[m#{member.id}]", "#{member.id},n"
 			= check_box_tag "members[m#{member.id}]", "#{member.id},y", att
-			= label_tag "members[m#{member.id}]", "#{member.name} (-#{member.birthyear.strftime('%y')})"
+			- suffix = "-#{member.birthyear.strftime('%y')}"
+			- if member.is_trainer
+				- suffix = "Tränare"
+			= label_tag "members[m#{member.id}]", "#{member.name} (#{suffix})"
 	%div{style: "margin-top: 30px;"}
 		= f.submit "Registrera närvaro", 'data-theme' => 'a', 'data-icon' => 'check'
 	%a{class: 'reset-btn', data: {target: '#new_attendance', role: 'button', theme: 'e', icon: 'back'}}Nollställ

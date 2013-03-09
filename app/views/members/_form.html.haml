@@ -20,5 +20,7 @@
   = f.text_field :contact1_email, placeholder: 'Kontaktperson #1 - E-mail'
   = f.text_field :contact2_phone, placeholder: 'Kontaktperson #1 - Telefonnummer'
   = f.text_field :contact2_email, placeholder: 'Kontaktperson #1 - E-mail'
+  = f.check_box :is_trainer
+  = label_tag "member_is_trainer", "Tränare"
   = f.submit({data: {theme: 'a', icon: 'arrow-r'}})
   %a{data: {role: 'button', theme: 'r', icon: 'delete', rel: 'back'}}Avbryt

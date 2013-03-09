@@ -6,7 +6,7 @@ class MembersController < ApplicationController
       @members = Member.all.order("name ASC")
     else
       @group = Group.find(params[:group_id])
-      @members = Member.where(group_id: @group.id).order("name ASC")
+      @members = Member.where(group_id: @group.id).order("is_trainer DESC, name ASC")
     end
 
     respond_to do |format|

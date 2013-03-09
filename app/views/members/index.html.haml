@@ -4,7 +4,11 @@
   - @members.each do |member|
     %li
       %a{href: group_member_path(@group, member)}
-        #{member.name} (-#{member.birthyear.strftime("%y")})
+        #{member.name}
+        - if member.is_trainer
+          (Tränare)
+        - else
+          (-#{member.birthyear.strftime("%y")})
 
 - if current_user.admin?
   %a{href: new_group_member_path, data: {role: 'button', icon: 'plus'}}Lägg till medlem

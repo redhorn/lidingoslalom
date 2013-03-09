@@ -1,4 +1,9 @@
-%h3 #{@member.name} (-#{@member.birthyear.strftime("%y")})
+%h3
+	#{@member.name}
+	- if @member.is_trainer
+		(Tränare)
+	- else
+		(-#{@member.birthyear.strftime("%y")})
 
 %p
 	Antal träningar: #{@num_practices}

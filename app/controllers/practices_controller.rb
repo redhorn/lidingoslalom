@@ -32,7 +32,7 @@ class PracticesController < ApplicationController
     elsif @sort == "group"
       sort_order = "group_name ASC, name ASC"
     end
-    @members = Member.where(group_id: @group.id).order(sort_order)
+    @members = Member.where(group_id: @group.id).order("is_trainer DESC", sort_order)
     @attendance = Attendance.new
   end
 
